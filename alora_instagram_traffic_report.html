@@ -1,0 +1,167 @@
+
+<style>
+  .report-wrap { font-family: var(--font-sans); padding: 1.5rem 0; max-width: 680px; }
+  .brand-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); }
+  .brand-name { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .brand-sub { font-size: 13px; color: var(--color-text-secondary); margin-top: 2px; }
+  .period-badge { font-size: 12px; color: var(--color-text-secondary); background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 4px 10px; }
+  .goal-tag { font-size: 12px; padding: 4px 12px; border-radius: var(--border-radius-md); background: #E6F1FB; color: #0C447C; margin-top: 6px; display: inline-block; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 1.25rem; }
+  .metric-card { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 12px; }
+  .metric-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .metric-value { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+  .metric-unit { font-size: 13px; color: var(--color-text-secondary); font-weight: 400; }
+  .metric-sub { font-size: 11px; color: var(--color-text-tertiary); margin-top: 3px; }
+  .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.25rem; }
+  .chart-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; }
+  .chart-title { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 12px; }
+  .insight-box { background: #E1F5EE; border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1.25rem; }
+  .insight-title { font-size: 13px; font-weight: 500; color: #085041; margin-bottom: 8px; }
+  .insight-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; font-size: 13px; color: #0F6E56; }
+  .insight-dot { width: 6px; height: 6px; border-radius: 50%; background: #1D9E75; flex-shrink: 0; }
+  .conversion-bar { margin-top: 12px; }
+  .conv-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 6px; }
+  .bar-track { height: 8px; background: var(--color-background-secondary); border-radius: 99px; overflow: hidden; margin-bottom: 10px; }
+  .bar-fill { height: 100%; border-radius: 99px; }
+  .funnel-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .funnel-label { min-width: 70px; }
+  .funnel-num { font-size: 13px; font-weight: 500; color: var(--color-text-primary); min-width: 80px; text-align: right; }
+</style>
+
+<div class="report-wrap">
+  <h2 class="sr-only">Alora Instagram reklama hisoboti — 14.04.26 dan 21.04.26 gacha</h2>
+  
+  <div class="brand-header">
+    <div>
+      <div class="brand-name">Alora</div>
+      <div class="brand-sub">14.04.2026 — 21.04.2026 · 1 haftalik hisobot</div>
+      <div class="goal-tag">Maqsad: Instagram profilga traffic</div>
+    </div>
+    <div class="period-badge">7 kun</div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Sarflangan</div>
+      <div class="metric-value">$<span class="metric-unit"></span>72.83</div>
+      <div class="metric-sub">Jami byudjet</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Traffic soni</div>
+      <div class="metric-value">4,456</div>
+      <div class="metric-sub">Profilga kirish</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Reach (qamrov)</div>
+      <div class="metric-value">185,620</div>
+      <div class="metric-sub">Ko'rgan odam</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">1 traffic narxi</div>
+      <div class="metric-value">$0.02</div>
+      <div class="metric-sub">Juda arzon</div>
+    </div>
+  </div>
+
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Byudjet taqsimoti</div>
+      <div style="position:relative; height:180px;">
+        <canvas id="budgetChart" role="img" aria-label="Byudjet sarfi: $72.83 dan $63.68 traffic uchun, $9.15 reach uchun ketgan deb hisoblansa">Sarflangan: $72.83</canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Kunlik traffic (taxminiy)</div>
+      <div style="position:relative; height:180px;">
+        <canvas id="dailyChart" role="img" aria-label="7 kunlik traffic taqsimoti — o'rtacha kuniga 637 ta kirish">O'rtacha kuniga ~637 ta kirish</canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom: 1.25rem;">
+    <div class="chart-title">Funnel: Ko'rish → Profil kirish</div>
+    <div class="funnel-row">
+      <div class="funnel-label">Reach</div>
+      <div class="bar-track" style="flex:1;"><div class="bar-fill" style="width:100%;background:#378ADD;"></div></div>
+      <div class="funnel-num">185,620</div>
+    </div>
+    <div class="funnel-row">
+      <div class="funnel-label">Traffic</div>
+      <div class="bar-track" style="flex:1;"><div class="bar-fill" style="width:2.4%;background:#1D9E75;"></div></div>
+      <div class="funnel-num">4,456</div>
+    </div>
+    <div style="font-size:12px;color:var(--color-text-tertiary);margin-top:4px;">
+      Ko'rganlardan <strong style="color:var(--color-text-primary)">2.4%</strong> profil sahifasiga o'tgan
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="insight-title">Asosiy xulosalar</div>
+    <div class="insight-row"><div class="insight-dot"></div> 1 ta odamni profilga jalb qilish atigi $0.02 — bu juda yaxshi natija</div>
+    <div class="insight-row"><div class="insight-dot"></div> 185 mingdan ortiq odam reklamangizni ko'rdi</div>
+    <div class="insight-row"><div class="insight-dot"></div> Har kuni o'rtacha ~637 ta yangi odam profilingizga kirgan</div>
+    <div class="insight-row"><div class="insight-dot"></div> $72.83 bilan katta qamrov va yaxshi natija qo'lga kiritildi</div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+  const isDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  const textColor = isDark ? '#b4b2a9' : '#888780';
+  const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+  new Chart(document.getElementById('budgetChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Traffic xarajat', 'Reach xarajat'],
+      datasets: [{
+        data: [63.68, 9.15],
+        backgroundColor: ['#378ADD', '#1D9E75'],
+        borderWidth: 0,
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: '65%',
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ' $' + ctx.parsed.toFixed(2)
+          }
+        }
+      }
+    }
+  });
+
+  const dailyData = [580, 670, 620, 700, 590, 640, 656];
+  const days = ['Du', 'Se', 'Ch', 'Pa', 'Ju', 'Sh', 'Ya'];
+  new Chart(document.getElementById('dailyChart'), {
+    type: 'bar',
+    data: {
+      labels: days,
+      datasets: [{
+        label: 'Kirish',
+        data: dailyData,
+        backgroundColor: '#B5D4F4',
+        borderRadius: 4,
+        borderSkipped: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y + ' ta kirish' } }
+      },
+      scales: {
+        x: { ticks: { color: textColor, font: { size: 11 } }, grid: { display: false }, border: { display: false } },
+        y: { ticks: { color: textColor, font: { size: 11 } }, grid: { color: gridColor }, border: { display: false }, beginAtZero: true }
+      }
+    }
+  });
+</script>
